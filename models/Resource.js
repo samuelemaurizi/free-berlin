@@ -10,7 +10,10 @@ const resourceSchema = new Schema({
   longdescr: String,
   location: String,
   date: Date,
-  image: String
+  image: {
+    type: String,
+    default: '../public/images/free-icon.png'
+  }
 
 });
 
