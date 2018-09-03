@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 const Resource = require("../models/Resource");
 const User = require("../models/User");
 
-
 mongoose.Promise = Promise;
 mongoose
   .connect(
     "mongodb://localhost/freeberlin",
-    { useMongoClient: true }
+    { useNewUrlParser: true }
   )
   .then(() => {
     console.log("Connected to Mongo!");
@@ -16,9 +15,10 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
+// Resource DB
 const resource = [
   {
-    category: "Sport",
+    category: "Sports",
     shortdescr: "Golf ausprobieren - kostenlos jeden Sonntag.",
     longdescr:
       "Golf spielen macht glücklich und fördert die Gesundheit - lernen Sie Golf spielen in unserer Golfschule bei Berlin! In unserem Schnupperkurs können Golf Anfänger unverbindlich und kostenlos das Golf spielen ausprobieren.",
@@ -26,7 +26,7 @@ const resource = [
     date: "Jeder Sonntag um 14.00 Uhr (April - Oktober 2018)"
   },
   {
-    category: "Sport",
+    category: "Sports",
     shortdescr: "Tangoeinführung: Tango-Schnupperkurse",
     longdescr:
       "Noch beschwingter durchs Leben? An Sonntagen der offenen Tür gibt es von 16 bis 18 Uhr kostenlose Tango-Einführung im Mala Junta, Etage für Tango Argentino. Termine auf der Site.",
@@ -42,7 +42,7 @@ const resource = [
     date: "Jeder Donnerstag um 20.00 Uhr (September - Oktober 2018)"
   },
   {
-    category: "Sport",
+    category: "Sports",
     shortdescr: "1 Golf ausprobieren - kostenlos jeden Sonntag.",
     longdescr:
       "Golf spielen macht glücklich und fördert die Gesundheit - lernen Sie Golf spielen in unserer Golfschule bei Berlin! In unserem Schnupperkurs können Golf Anfänger unverbindlich und kostenlos das Golf spielen ausprobieren.",
@@ -50,7 +50,7 @@ const resource = [
     date: "Jeder Sonntag um 14.00 Uhr (April - Oktober 2018)"
   },
   {
-    category: "Sport",
+    category: "Sports",
     shortdescr: "2 Golf ausprobieren - kostenlos jeden Sonntag.",
     longdescr:
       "Golf spielen macht glücklich und fördert die Gesundheit - lernen Sie Golf spielen in unserer Golfschule bei Berlin! In unserem Schnupperkurs können Golf Anfänger unverbindlich und kostenlos das Golf spielen ausprobieren.",
@@ -58,7 +58,7 @@ const resource = [
     date: "Jeder Sonntag um 14.00 Uhr (April - Oktober 2018)"
   },
   {
-    category: "Sport",
+    category: "Sports",
     shortdescr: "3 Golf ausprobieren - kostenlos jeden Sonntag.",
     longdescr:
       "Golf spielen macht glücklich und fördert die Gesundheit - lernen Sie Golf spielen in unserer Golfschule bei Berlin! In unserem Schnupperkurs können Golf Anfänger unverbindlich und kostenlos das Golf spielen ausprobieren.",
@@ -68,9 +68,13 @@ const resource = [
 ];
 
 Resource.deleteMany()
-  .then(() => Resource.create())
+  .then(() => {
+    Resource.create(resource);
+  })
   .then(entries => {
     console.log(entries.length + " entries created");
     mongoose.connection.close();
   })
-  .catch(err => console.log("Sorry dude! Something went wrong!"));
+  .catch(err => {
+    throw err;
+  });
