@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Resource = require("../models/Resource");
 const User = require("../models/User");
 
-mongoose.Promise = Promise;
 mongoose
   .connect(
     "mongodb://localhost/freeberlin",
