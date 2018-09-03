@@ -19,11 +19,11 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", (req, res, next) => {   //signup
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {   ///signup
   const username = req.body.username;
   const password = req.body.password;
   if (username === "" || password === "") {
