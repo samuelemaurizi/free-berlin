@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const Resource = require('../models/Resource');
 const User = require('../models/User');
@@ -6,9 +6,9 @@ const Favorite = require('../models/Favorite');
 
 
 /*GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index');
-})
+router.get("/", (req, res, next) => {
+  res.render("index");
+});
 
 /*GET main page for user*/
 router.get('/main', (req, res, next) => {
@@ -16,15 +16,15 @@ router.get('/main', (req, res, next) => {
 })
 
 /*GET list of free resources*/
-router.get('/free-list', (req, res, next) => {
+router.get("/free-list", (req, res, next) => {
   Resource.find()
     .then(resourcesFromDb => {
-      res.render('free-list', {
-        "resources": resourcesFromDb
+      res.render("free-list", {
+        resources: resourcesFromDb
       });
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 router.get('/profile', (req, res, next) => {
   User.findById(req.user._id)
@@ -68,11 +68,11 @@ router.get('/profile', (req, res, next) => {
     })
 })
 
-router.get('/add', (req, res, next) => {
-  res.render('add-resource');
-})
+router.get("/add", (req, res, next) => {
+  res.render("add-resource");
+});
 
-router.post('/add', (req, res, next) => {
+router.post("/add", (req, res, next) => {
   console.log("req.body", req.body);
   console.log("req.user", req.user);
   const newResource = new Resource({

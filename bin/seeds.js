@@ -78,7 +78,6 @@ mongoose
 //     throw err;
 //   });
 
-
 // Resource.deleteMany()
 //   .then(() => {
 //     Resource.create(resource);
