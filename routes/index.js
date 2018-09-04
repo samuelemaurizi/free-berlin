@@ -42,17 +42,16 @@ router.post("/add", (req, res, next) => {
     location: req.body.location,
     date: req.body.date,
     image: req.body.image
-  });
-  newResource
-    .save()
-    .then(resource => {
+  })
+  newResource.save()
+    .then((resource) => {
       console.log("The res was saved!!!");
-      res.redirect("/free-list");
+      res.redirect('/free-list');
     })
-    .catch(error => {
-      res.render("add-resource"); //vorher /
-    });
-});
+    .catch((error) => {
+      res.render('add-resource')//vorher /
+    })
+})
 
 // router.get('/:id/detail', (req, res, next) => {
 //   res.render('detail');

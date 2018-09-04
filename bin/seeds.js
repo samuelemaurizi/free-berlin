@@ -92,11 +92,10 @@ const resource = [
 Resource.deleteMany()
   .then(() => Resource.create(resource))
   .then(resourceCreated => {
-    console.log("Created");
-    mongoose.disconnect();
+    console.log("Created")
+    mongoose.disconnect()
+
   })
   .catch(err => {
-    if (err) {
-      throw err;
-    }
-  });
+    if (err) { throw (err) }
+  })
