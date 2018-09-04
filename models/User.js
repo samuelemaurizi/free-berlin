@@ -4,8 +4,13 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  favorized: Number,
-  _contributions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }]
+  favorized: { type: Number, default: 0 },
+  profilepic: { type: String, default: "/images/profile-picture.png" },
+  description: {
+    type: String,
+    default: "I have not added a description about me yet"
+  },
+  // _contributions: [{ type: Schema.Types.ObjectId, ref: 'Resource' }]
 }, {
     timestamps: {
       createdAt: 'created_at',

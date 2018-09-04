@@ -1,0 +1,11 @@
+<h2>Free Stuff</h2>
+{{#each resources}}
+<div>
+  <img src="/images/free-icon.png" style="height:50px" alt="default img">
+  <h3> {{this.category}} </h3>
+  <h5> {{this.shortdescr}} </h5>
+  <p> {{this.location}} </p>
+  <p> {{this.date}} </p>
+  <a href="{{this._id}}/detail"> Details</a>
+</div>
+{{/each}}

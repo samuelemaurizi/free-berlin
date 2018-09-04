@@ -1,0 +1,19 @@
+<form action="/add" method="post">
+  <select name="category">
+    <option value="Event">Event</option>
+    <option value="Culture">Culture</option>
+    <option value="Sports">Sports</option>
+    <option value="Food">Food</option>
+  </select>
+  <input class="form-control" name='shortdescr' type='text' placeholder="Title">
+  <br>
+  <textarea class="form-control" name="longdescr" cols="30" rows="10" placeholder="Detailed description"></textarea>
+  <br>
+  <input class="form-control" name='location' type='text' placeholder="Where?">
+  <br>
+  <input class="form-control" name='date' type='text' placeholder="When?">
+  <br>
+  <input class="form-control" name='image' type='text' placeholder="Image link (optional)">
+  <br>
+  <button>Submit</button>
+</form>

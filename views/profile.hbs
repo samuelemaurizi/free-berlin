@@ -1,0 +1,23 @@
+<img src="{{this.profilepic}}">
+<h4>{{this.username}}</h4>
+<p>Description: {{this.description}}</p>
+<p>Member since: {{this.createdAt}}</p>
+<p>Amount of likes: {{this.favorized}}</p>
+
+
+<ul>
+  <h4>FAVORITES</h4>
+  {{#each this.favorites}}
+  <li>Category: {{this._resource.category}} What? {{this._resource.shortdescr}} Where? {{this._resource.location}}</li>
+  <a href="/{{this._resource._id}}/detail">MORE</a>
+  {{/each}}
+</ul>
+
+<ul>
+  <h4>Contributions</h4>
+  {{#each this.contributions}}
+  <li>{{this.shortdescr}} {{this.location}}
+    <a href="/{{this._id}}/edit">EDIT</a>
+  </li>
+  {{/each}}
+</ul>
