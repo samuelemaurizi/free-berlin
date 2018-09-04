@@ -66,14 +66,37 @@ const resource = [
   }
 ];
 
+// Resource.deleteMany()
+//   .then(() => {
+//     Resource.create(resource);
+//   })
+//   .then(entries => {
+//     //console.log(entries.length + " entries created");
+//     mongoose.connection.close();
+//   })
+//   .catch(err => {
+//     throw err;
+//   });
+
+// Resource.deleteMany()
+//   .then(() => {
+//     Resource.create(resource);
+//   })
+//   .then(entries => {
+//     console.log(entries.length + " entries created");
+//     mongoose.connection.close();
+//   })
+//   .catch(err => {
+//     throw err;
+//   });
 Resource.deleteMany()
-  .then(() => {
-    Resource.create(resource);
-  })
-  .then(entries => {
-    console.log(entries.length + " entries created");
-    mongoose.connection.close();
+  .then(() => Resource.create(resource))
+  .then(resourceCreated => {
+    console.log("Created");
+    mongoose.disconnect();
   })
   .catch(err => {
-    throw err;
+    if (err) {
+      throw err;
+    }
   });
