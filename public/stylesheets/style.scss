@@ -7,25 +7,30 @@ body {
   // font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.container-body {
-  // margin-top: 5px;
-  background-image: url('http://rpgknights.com/wp-content/uploads/2015/02/Free-Stuff-Creative-Commons.jpg');
-  background-size: cover;
-}
+// .container-body {
+//   // margin-top: 5px;
+//   background-image: url('http://rpgknights.com/wp-content/uploads/2015/02/Free-Stuff-Creative-Commons.jpg');
+//   background-size: cover;
+//   z-index: -1;
+// }
+
+// .overlay {
+//   background-color: rgba(255, 255, 255, 0.8);
+// }
 
   // Img User
 .image-cropper {
-  width: 240px;
-  height: 240px;
   position: relative;
   overflow: hidden;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 
 .profile-pic {
   display: inline;
   margin: 0 auto;
-  // margin-left: -25%;
+  margin-left: -25%;
 }
 
 // Color References
@@ -71,7 +76,7 @@ a {
 }
 
 a:hover {
-  color: rgb(97, 97, 97);
+  color: rgb(211, 130, 24);
   text-decoration: none;
 }
 // END Navbar
@@ -289,25 +294,72 @@ a:hover {
 
 
 // Profile
+.profile-layout {
+  display: flex;
+  flex-direction: column;
+}
 .user-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 25px;
-  background-color: pink;
-}
-
-.user-name {
-  width: 75%;
-  padding: 20px 0 6px 0;
   border-bottom: 1px solid lightgray;
 }
 
-.user-profile p {
-  width: 75%;
-  padding: 15px 0 6px 0;
+.user-fav-contrib a:hover {
+  color: #fff;
+}
+
+.user-fav-contrib button:hover {
+  color: #fff;
+}
+
+.user-info {
+  width: 60%;
+  height: 100%;
+  padding-left: 10%;
+}
+
+.user-info a {
+  color: rgb(172, 172, 172);
+  margin-right: 0;
+}
+
+.user-fav-contrib {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 36px;
+  & ul {
+    list-style: none;
+  }
+}
+
+.user-btn {
+  display: flex;
+  flex-direction: row;
+  margin: 4px 0 30px 0;
+  padding-bottom: 8px;
+  font-family: 'Bangers', cursive;
   border-bottom: 1px solid lightgray;
 }
 
-.user-fav {
-  background-color: pink;
+.fav ,
+.contrib {
+  width: 45%;
+  & h4 {
+    text-align: center;
+    font-family: 'Bangers', cursive;
+  }
+
+  & li {
+    padding-bottom: 6px;
+  }
+
+  & a {
+    display: block;
+    margin-right: 8px;
+  }
 }
 
 

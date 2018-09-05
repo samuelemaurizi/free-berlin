@@ -4,20 +4,17 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif; }
 
-.container-body {
-  background-image: url("http://rpgknights.com/wp-content/uploads/2015/02/Free-Stuff-Creative-Commons.jpg");
-  background-size: cover; }
-
 .image-cropper {
-  width: 240px;
-  height: 240px;
   position: relative;
   overflow: hidden;
+  width: 200px;
+  height: 200px;
   border-radius: 50%; }
 
 .profile-pic {
   display: inline;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-left: -25%; }
 
 .navbar {
   background-color: #FFB41D;
@@ -44,7 +41,7 @@ a {
   color: #fff; }
 
 a:hover {
-  color: #616161;
+  color: #d38218;
   text-decoration: none; }
 
 .container-shadow {
@@ -202,22 +199,62 @@ a:hover {
 .container-add button:hover {
   background-color: #ffb41d; }
 
+.profile-layout {
+  display: flex;
+  flex-direction: column; }
+
 .user-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 25px;
-  background-color: pink; }
-
-.user-name {
-  width: 75%;
-  padding: 20px 0 6px 0;
   border-bottom: 1px solid lightgray; }
 
-.user-profile p {
-  width: 75%;
-  padding: 15px 0 6px 0;
+.user-fav-contrib a:hover {
+  color: #fff; }
+
+.user-fav-contrib button:hover {
+  color: #fff; }
+
+.user-info {
+  width: 60%;
+  height: 100%;
+  padding-left: 10%; }
+
+.user-info a {
+  color: #acacac;
+  margin-right: 0; }
+
+.user-fav-contrib {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 36px; }
+  .user-fav-contrib ul {
+    list-style: none; }
+
+.user-btn {
+  display: flex;
+  flex-direction: row;
+  margin: 4px 0 30px 0;
+  padding-bottom: 8px;
+  font-family: 'Bangers', cursive;
   border-bottom: 1px solid lightgray; }
 
-.user-fav {
-  background-color: pink; }
+.fav,
+.contrib {
+  width: 45%; }
+  .fav h4,
+  .contrib h4 {
+    text-align: center;
+    font-family: 'Bangers', cursive; }
+  .fav li,
+  .contrib li {
+    padding-bottom: 6px; }
+  .fav a,
+  .contrib a {
+    display: block;
+    margin-right: 8px; }
 
 .err h1 {
   padding-top: 20vh;

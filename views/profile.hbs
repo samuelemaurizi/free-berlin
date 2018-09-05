@@ -1,30 +1,63 @@
-<img src="{{this.profilepic}}">
-<a href="/editProfile">EDIT PROFILE</a>
-<h4>{{this.username}}</h4>
-<p>Description: {{this.description}}</p>
-<p>Member since: {{this.createdAt}}</p>
-<p>Amount of likes: {{this.favorized}}</p>
+<div class="container">
+  <div class="profile-layout">
+    <div class="user-profile">
+      <div class="image-cropper">
+        <img clas="profile-pic" src="{{this.profilepic}}">
+      </div>
+      <div class="user-info">
+        <h4>{{this.username}}</h4>
+        <p><strong>Description: </strong> {{this.description}}</p>
+        <p><strong>Member since: </strong> {{this.createdAt}}</p>
+        <p><strong>Amount of likes: </strong> {{this.favorized}}</p>
+        <a class="btn btn-light" href="/editProfile">Edit Profile</a>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+    <div class="user-fav-contrib">
+      <div class="fav">
+        <ul>
+          <h4>Favorites</h4>
+          {{#each this.favorites}}
+          <li>
+            <strong>Category: </strong>{{this._resource.category}}
+          </li>
+          <li>
+            <strong>What? </strong>{{this._resource.shortdescr}}
+          </li>
+          <li>
+            <strong>Where? </strong>{{this._resource.location}}
+          </li>
+          <div class="user-btn">
+            <a class="btn btn-warning" href="/{{this._resource._id}}/detail">MORE</a>
+            <form action="/favorites/{{this._resource._id}}/delete" method="post">
+              <button class="btn btn-warning" type="submit">DELETE</button>
+            </form>
+          </div>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="contrib">
+        <ul>
+          <h4>Contributions</h4>
+          {{#each this.contributions}}
+          <li>{{this.shortdescr}}</li>
+          <li>{{this.location}}</li>
+          <div class="user-btn">
+            <a class="btn btn-warning" href="/{{this._id}}/edit">EDIT</a>
+            <form action="/{{this._id}}/delete" method="post">
+              <button class="btn btn-warning" type="submit">DELETE</button>
+            </form> 
+          </div>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
 
-
-<ul>
-  <h4>FAVORITES</h4>
-  {{#each this.favorites}}
-  <li>Category: {{this._resource.category}} What? {{this._resource.shortdescr}} Where? {{this._resource.location}}</li>
-  <a href="/{{this._resource._id}}/detail">MORE</a>
-  <form action="/favorites/{{this._resource._id}}/delete" method="post">
-    <button type="submit">DELETE</button>
-  </form>
-  {{/each}}
-</ul>
-
-<ul>
-  <h4>Contributions</h4>
-  {{#each this.contributions}}
-  <li>{{this.shortdescr}} {{this.location}}
-    <a href="/{{this._id}}/edit">EDIT</a>
-    <form action="/{{this._id}}/delete" method="post">
-      <button type="submit">DELETE</button>
-    </form>
-  </li>
-  {{/each}}
-</ul>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
