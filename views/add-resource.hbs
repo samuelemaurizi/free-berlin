@@ -1,19 +1,19 @@
-<form action="/add" method="post">
-  <select name="category">
-    <option value="Event">Event</option>
-    <option value="Culture">Culture</option>
-    <option value="Sports">Sports</option>
-    <option value="Food">Food</option>
-  </select>
-  <input class="form-control" name='shortdescr' type='text' placeholder="Title">
-  <br>
-  <textarea class="form-control" name="longdescr" cols="30" rows="10" placeholder="Detailed description"></textarea>
-  <br>
-  <input class="form-control" name='location' type='text' placeholder="Where?">
-  <br>
-  <input class="form-control" name='date' type='text' placeholder="When?">
-  <br>
-  <input class="form-control" name='image' type='text' placeholder="Image link (optional)">
-  <br>
-  <button>Submit</button>
-</form>
+<div class="container container-shadow container-add w-50">
+  <form action="/add" method="post">
+    <select class="custom-select form-add" id="selec-menu" name="category">
+      <option value="hide">Select Category</option>
+      <option value="Event">Event</option>
+      <option value="Culture">Culture</option>
+      <option value="Sports">Sports</option>
+      <option value="Food">Food</option>
+    </select>
+    <div class="form-group">
+      <input class="form-control form-add" name='shortdescr' type='text' placeholder="Title">
+      <textarea class="form-control form-add" name="longdescr" cols="30" rows="8" placeholder="Detailed description"></textarea>
+      <input class="form-control form-add" name='location' type='text' placeholder="Where?">
+      <input class="form-control form-add" name='date' type='text' placeholder="When?">
+      <input class="form-control form-add" name='image' type='text' placeholder="Image link (optional)">
+    </div>
+    <button class="btn-block">Submit</button>
+  </form>
+</div>

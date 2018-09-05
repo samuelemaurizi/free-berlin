@@ -1,19 +1,19 @@
-<form action="/{{this._id}}/edit" method="post">
-  <select name="category">
-    <option value="Event">Event</option>
-    <option value="Culture">Culture</option>
-    <option value="Sports">Sports</option>
-    <option value="Food">Food</option>
-  </select>
-  <input class="form-control" name='shortdescr' type='text' placeholder="Title" value="{{this.shortdescr}}">
-  <br>
-  <textarea class="form-control" name="longdescr" cols="30" rows="10" placeholder="Detailed description" ">{{this.longdescr}}</textarea>
-  <br>
-  <input class="form-control " name='location' type='text' placeholder="Where? " value="{{this.location}} ">
-  <br>
-  <input class="form-control " name='date' type='text' placeholder="When? " value="{{this.date}} ">
-  <br>
-  <input class="form-control " name='image' type='text' placeholder="Image link (optional) " value="{{this.image}} ">
-  <br>
-  <button>Submit</button>
-</form>
+<div class="container container-shadow container-add w-50">
+  <form action="/{{this._id}}/edit" method="post">
+    <select class="custom-select form-add" id="selec-menu" name="category">
+      <option value="hide">Select Category</option>
+      <option value="Event">Event</option>
+      <option value="Culture">Culture</option>
+      <option value="Sports">Sports</option>
+      <option value="Food">Food</option>
+    </select>
+    <div class="form-group">
+      <input class="form-control form-add" name='shortdescr' type='text' placeholder="Title" value="{{this.shortdescr}}">
+      <textarea class="form-control form-add" name="longdescr" cols="30" rows="8" placeholder="Detailed description">{{this.longdescr}}</textarea>
+      <input class="form-control form-add" name='location' type='text' placeholder="Where? " value="{{this.location}} ">
+      <input class="form-control form-add" name='date' type='text' placeholder="When? " value="{{this.date}} ">
+      <input class="form-control form-add" name='image' type='text' placeholder="Image link (optional) " value="{{this.image}} ">
+    </div>
+    <button class="btn-block">Submit</button>
+  </form>
+</div>
