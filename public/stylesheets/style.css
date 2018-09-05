@@ -125,4 +125,8 @@ a:hover {
 .account-message a:hover {
   color: #FDA403; }
 
+.clicked {
+  background-color: black;
+  color: red; }
+
 /*# sourceMappingURL=style.css.map */
