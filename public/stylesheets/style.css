@@ -4,6 +4,10 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif; }
 
+.container-body {
+  background-image: url("http://rpgknights.com/wp-content/uploads/2015/02/Free-Stuff-Creative-Commons.jpg");
+  background-size: cover; }
+
 .image-cropper {
   width: 240px;
   height: 240px;
@@ -44,15 +48,14 @@ a:hover {
   text-decoration: none; }
 
 .container-shadow {
-  height: calc(100vh - 96px);
+  height: calc(100vh - 81px);
   padding: 50px 25px;
-  margin-top: 10px;
   box-shadow: 0 6px 6px 2px rgba(0, 0, 0, 0.1); }
 
 .center {
   text-align: center;
   max-width: 40vw;
-  background-color: rgba(211, 211, 211, 0.2); }
+  background-color: rgba(255, 255, 255, 0.8); }
 
 .btn-warning:hover {
   background-color: #ffb41d;
@@ -135,7 +138,6 @@ a:hover {
 .account-message a:hover {
   color: #FDA403; }
 
-<<<<<<< HEAD
 .main-bg {
   max-width: 60%;
   text-align: center; }
@@ -145,21 +147,28 @@ a:hover {
   margin: 0; }
 
 .main-btn-bg {
-  width: 100px; }
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  border-radius: 20px;
+  background-color: #FFB41D;
+  box-shadow: 0 0px 3px 1px rgba(0, 0, 0, 0.3); }
 
 .main-btn {
-  position: relative;
-  text-align: center;
-  top: 50%;
   padding: 25px;
   color: #fff;
-  font-size: 1rem; }
+  font-size: 2rem;
+  font-family: 'Bangers', cursive;
+  transition: color 0.6s ease; }
 
-.row {
-  height: 100%;
+.row1 {
+  height: 50%;
   display: flex;
-  justify-content: space-between;
-  background-color: #FFB41D; }
+  justify-content: space-around;
+  position: relative;
+  top: 20%; }
 
 .container-add {
   padding-top: 25px; }
@@ -213,10 +222,5 @@ a:hover {
 .err h1 {
   padding-top: 20vh;
   font-size: 10rem; }
-=======
-.clicked {
-  background-color: black;
-  color: red; }
->>>>>>> 8e65642335e7b479fe7fc85eef33345010e8a29c
 
 /*# sourceMappingURL=style.css.map */
