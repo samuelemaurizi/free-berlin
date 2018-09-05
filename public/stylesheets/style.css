@@ -135,88 +135,8 @@ a:hover {
 .account-message a:hover {
   color: #FDA403; }
 
-<<<<<<< HEAD
-.main-bg {
-  max-width: 60%;
-  text-align: center; }
-
-.main-bg h1 {
-  font-family: 'Bangers', cursive;
-  margin: 0; }
-
-.main-btn-bg {
-  width: 100px; }
-
-.main-btn {
-  position: relative;
-  text-align: center;
-  top: 50%;
-  padding: 25px;
-  color: #fff;
-  font-size: 1rem; }
-
-.row {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  background-color: #FFB41D; }
-
-.container-add {
-  padding-top: 25px; }
-
-.custom-select {
-  font-weight: 600; }
-  .custom-select:active {
-    background-color: #FDA403; }
-
-.custom-select select {
-  display: none;
-  /*hide original SELECT element:*/ }
-
-.form-add {
-  margin-bottom: 1rem; }
-
-.container-add button {
-  padding: 10px 20px;
-  margin: 10px 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #fff;
-  background-color: #FDA403;
-  border: 1px solid #FDA403;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: 0;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.5s ease; }
-
-.container-add button:hover {
-  background-color: #ffb41d; }
-
-.user-profile {
-  padding: 25px;
-  background-color: pink; }
-
-.user-name {
-  width: 75%;
-  padding: 20px 0 6px 0;
-  border-bottom: 1px solid lightgray; }
-
-.user-profile p {
-  width: 75%;
-  padding: 15px 0 6px 0;
-  border-bottom: 1px solid lightgray; }
-
-.user-fav {
-  background-color: pink; }
-
-.err h1 {
-  padding-top: 20vh;
-  font-size: 10rem; }
-=======
 .clicked {
   background-color: black;
   color: red; }
->>>>>>> 8e65642335e7b479fe7fc85eef33345010e8a29c
 
 /*# sourceMappingURL=style.css.map */

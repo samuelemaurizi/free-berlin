@@ -11,10 +11,20 @@
     </a>
   </div>
 </form>
-{{!-- "/favorite/{{this._id}}/create " --}} {{!--
+
+<form action="/{{this._id}}/comment" method="post">
+  <textarea class="form-control form-add" name="comment" cols="30" rows="8" placeholder="Place your comment here"></textarea>
+  <button>Submit</button>
+</form>
+
+{{#each comments}}
+<div>
+  <p>{{this.text}}</p>
+  <footer>Author: {{this._author.username}} Date: {{this.created_at}}</footer>
+</div>
+{{/each}} {{!-- jdjdjjd --}}
+
 <script>
-  document.getElementById("favorize-link ").addEventListener("click ", function (e) {
-    console.log(this)
-    this.classList.toggle('clicked');
-  })
-</script> --}}
+  var dateComment = {{ this.created_at }};
+  dateComment = dateComment.slice(0, 24);
+</script>
