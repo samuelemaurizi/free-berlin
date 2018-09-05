@@ -6,12 +6,13 @@
     <p> {{this.longdescr}} </p>
     <p> {{this.location}} </p>
     <p> {{this.date}} </p>
-    <button>Favorize</button>
-    <a id="favorize-link" style="{{this.color}}" " href="favorize ">Favorizelink</a>
+    <a id="favorize-link" href="favorize ">
+      <img src="{{this.hearticon}} ">
+    </a>
   </div>
 </form>
-{{!-- "/favorite/{{this._id}}/create " --}}
-{{!-- <script>
+{{!-- "/favorite/{{this._id}}/create " --}} {{!--
+<script>
   document.getElementById("favorize-link ").addEventListener("click ", function (e) {
     console.log(this)
     this.classList.toggle('clicked');

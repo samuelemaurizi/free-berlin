@@ -118,15 +118,25 @@ router.post("/add", (req, res, next) => {
 router.get('/:id/detail', (req, res, next) => {
   Resource.findById(req.params.id)
     .then(resourcesFromDb => {
-      res.render('detail', {
-        category: resourcesFromDb.category,
-        shortdescr: resourcesFromDb.shortdescr,
-        longdescr: resourcesFromDb.longdescr,
-        location: resourcesFromDb.location,
-        date: resourcesFromDb.date,
-        image: resourcesFromDb.image,
-        _id: req.params.id
-      });
+      Favorite.findOne({ _resource: req.params.id, _owner: req.user._id })
+        .then(favedRes => {
+          if (!favedRes) {
+            var heartIcon = "/images/unlike.png"
+          }
+          else {
+            var heartIcon = "/images/like.png"
+          }
+          res.render('detail', {
+            category: resourcesFromDb.category,
+            shortdescr: resourcesFromDb.shortdescr,
+            longdescr: resourcesFromDb.longdescr,
+            location: resourcesFromDb.location,
+            date: resourcesFromDb.date,
+            image: resourcesFromDb.image,
+            _id: req.params.id,
+            hearticon: heartIcon
+          });
+        })
     })
     .catch(next)
 })
@@ -207,7 +217,9 @@ router.get('/:id/favorize', (req, res, next) => {
                   date: resourcesFromDb.date,
                   image: resourcesFromDb.image,
                   _id: req.params.id,
-                  color: "background-color:grey"
+                  color: "background-color:grey",
+                  hearticon: "/images/unlike.png"
+
                 });
               })
           })
@@ -226,7 +238,8 @@ router.get('/:id/favorize', (req, res, next) => {
                   date: resourcesFromDb.date,
                   image: resourcesFromDb.image,
                   _id: req.params.id,
-                  color: "color:red"
+                  color: "color:red",
+                  hearticon: "/images/like.png"
                 });
               })
           })
@@ -255,6 +268,17 @@ router.post('/favorites/:resourceId/delete', (req, res, next) => {
       res.redirect('/profile')
     })
     .catch(next)
+});
+
+router.post('/filter', (req, res, next) => {
+  const category = req.body.category;
+  Resource.find({ category: category })
+    .then(matchingResources => {
+      res.render("free-list", {
+        resources: matchingResources
+      });
+    })
+    .catch(next);
 });
 
 // router.get("/favorite/:resourceID/create", (req, res) => {

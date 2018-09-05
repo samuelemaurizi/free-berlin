@@ -1,4 +1,17 @@
 <h2>Free Stuff</h2>
+<form action="/filter" method="post">
+  <select name="category">
+    <option value="Event">Event</option>
+    <option value="Culture">Culture</option>
+    <option value="Sports">Sports</option>
+    <option value="Food">Food</option>
+  </select>
+  <button>Filter</button>
+</form>
+<button>
+  <a href="/free-list">See all</a>
+</button>
+
 {{#each resources}}
 <div>
   <img src="/images/free-icon.png" style="height:50px" alt="default img">
