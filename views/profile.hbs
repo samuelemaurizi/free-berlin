@@ -1,31 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col user-profile">
-      <div class="image-cropper">
-        <img class="profile-pic" src="{{this.profilepic}}">
-      </div>
-      <h4 class="user-name">{{this.username}}</h4>
-      <p class="user-description"><strong>Description: </strong> {{this.description}}</p>
-      <p><strong>Amount of likes: </strong>{{this.favorized}}</p>
-      <p><strong>Member since: </strong> {{this.createdAt}}</p>
-    </div>
-    <div class="col user-fav">
-      <ul>
-        <h4>Favorites</h4>
-        {{#each this.favorites}}
-        <li>Category: {{this._resource.category}} What? {{this._resource.shortdescr}} Where? {{this._resource.location}}</li>
-        <a href="/{{this._resource._id}}/detail">MORE</a>
-        {{/each}}
-      </ul>
+<img src="{{this.profilepic}}">
+<a href="/editProfile">EDIT PROFILE</a>
+<h4>{{this.username}}</h4>
+<p>Description: {{this.description}}</p>
+<p>Member since: {{this.createdAt}}</p>
+<p>Amount of likes: {{this.favorized}}</p>
 
-      <ul>
-        <h4>Contributions</h4>
-        {{#each this.contributions}}
-        <li>{{this.shortdescr}} {{this.location}}
-          <a href="/{{this._id}}/edit">EDIT</a>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-</div>
+
+<ul>
+  <h4>FAVORITES</h4>
+  {{#each this.favorites}}
+  <li>Category: {{this._resource.category}} What? {{this._resource.shortdescr}} Where? {{this._resource.location}}</li>
+  <a href="/{{this._resource._id}}/detail">MORE</a>
+  <form action="/favorites/{{this._resource._id}}/delete" method="post">
+    <button type="submit">DELETE</button>
+  </form>
+  {{/each}}
+</ul>
+
+<ul>
+  <h4>Contributions</h4>
+  {{#each this.contributions}}
+  <li>{{this.shortdescr}} {{this.location}}
+    <a href="/{{this._id}}/edit">EDIT</a>
+    <form action="/{{this._id}}/delete" method="post">
+      <button type="submit">DELETE</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>

@@ -135,6 +135,7 @@ a:hover {
 .account-message a:hover {
   color: #FDA403; }
 
+<<<<<<< HEAD
 .main-bg {
   max-width: 60%;
   text-align: center; }
@@ -212,5 +213,10 @@ a:hover {
 .err h1 {
   padding-top: 20vh;
   font-size: 10rem; }
+=======
+.clicked {
+  background-color: black;
+  color: red; }
+>>>>>>> 8e65642335e7b479fe7fc85eef33345010e8a29c
 
 /*# sourceMappingURL=style.css.map */
