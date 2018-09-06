@@ -1,7 +1,7 @@
 // General
 body {
   box-sizing: border-box;
-  margin: 0;
+  margin-top: 80px;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   // font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -102,11 +102,11 @@ a:hover {
   background-color: #FDA403;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
   transition: background-color 0.5s ease;
-}
-
-.index-btn a:hover {
-  color: #fff;
-  text-decoration: none;
+  
+  & a {
+    width: 300px;
+    height: 100%;
+  }
 }
 
 .index-txt h1 {
@@ -434,15 +434,12 @@ a:hover {
   }
 }
 
-.detail-comment {
-  width: 30%;
-}
-
 .detail-fav-loc {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-top: 3rem;
+  border-bottom: 1px solid lightgray;
   & img {
     height: 3rem;
    }
@@ -458,6 +455,7 @@ a:hover {
 }
 
 .detail-comment {
+  width: 30%;
   height: 100%;
   & button {
     color: #fff;
@@ -471,6 +469,148 @@ a:hover {
   }
 }
 
+.comment-header {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  font-family: 'Bangers', coursive;
+  color: rgb(97, 97, 97);
+}
+
+.comment-auth {
+  margin-top: 45px;
+  font-size: 0.8rem;
+  & p {
+    margin: 5px;
+  }
+  & .auth-text {
+    font-size: 1rem;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+}
+
+.comment {
+  & a {
+    color: #FDA403;
+  }
+
+  & a:hover {
+    color: rgb(197, 129, 2);
+  }
+}
+// END Edit Profile
+
+
+
+
+
+// Free List
+.list-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 130px 0 25px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid lightgray;
+
+  & h1 {
+    font-family: 'Bangers', coursive;
+    color: rgb(97, 97, 97);
+    margin: 0;
+  }
+}
+
+.form-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-filter {
+  width: 50%;
+}
+
+.form-filter button {
+  width: 100%;
+  padding: 6px 18px;
+  margin-left: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #FDA403;
+  border: 1px solid #FDA403;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: 0;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s ease;
+}
+
+.form-filter button:hover {
+  background-color: rgb(255, 180, 29);
+}
+
+  // Cards
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.card {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  
+  padding: 1rem;
+  margin: 0 25px 60px 25px;
+  box-shadow: 0 4px 6px 1px rgba(0, 0, 0, .1);
+  & img {
+    margin-bottom: 16px;
+  }
+  
+  & h3 {
+    font-family: 'Bangers', coursive;
+    color: rgb(97, 97, 97);
+    // font-weight: 600;
+    padding-bottom: 8px;
+    border-bottom: 1px solid lightgray;
+  }
+
+  & h5 {
+    padding: 6px 0;
+    margin-bottom: 18px;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  & a {
+    color: #fff;
+    background-color: #FDA403;
+    transition: background-color 0.5s ease;
+    transition: color 0.5s ease;
+    margin-top: 32px;
+  }
+
+  & a:hover {
+    color: rgb(156, 102, 31);
+    background-color: rgb(255, 180, 29);
+  }
+}
+
+.btn-details {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+
+// END Free List
 
 
 
