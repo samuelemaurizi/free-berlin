@@ -4,6 +4,9 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif; }
 
+.h2-title {
+  font-family: 'Bangers', cursive; }
+
 .image-cropper {
   position: relative;
   overflow: hidden;
@@ -265,6 +268,22 @@ a:hover {
     display: block;
     margin-right: 8px; }
 
+.edit-prof form {
+  margin-top: 55px; }
+  .edit-prof form button {
+    padding: 10px 0;
+    margin-top: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FDA403;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.5s ease; }
+
+.edit-prof button:hover {
+  color: #fff;
+  background-color: #ffb41d; }
+
 .cont-detail {
   width: 100%;
   display: flex;
@@ -279,7 +298,9 @@ a:hover {
   .detail img {
     margin-bottom: 1rem; }
   .detail h5 {
-    margin-bottom: 1.2rem; }
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid lightgray; }
 
 .detail-title {
   display: flex;
@@ -288,7 +309,8 @@ a:hover {
   .detail-title h3 {
     margin-left: 2rem;
     font-family: 'Bangers', cursive;
-    font-size: 2rem; }
+    font-size: 2rem;
+    color: #616161; }
 
 .detail-comment {
   width: 30%; }
@@ -296,16 +318,26 @@ a:hover {
 .detail-fav-loc {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  padding-top: 3rem; }
   .detail-fav-loc img {
     height: 3rem; }
+  .detail-fav-loc p {
+    line-height: 0.8rem; }
 
 .loc {
+  width: 90%;
   padding-right: 4rem; }
 
 .detail-comment {
-  height: 100%;
-  color: red; }
+  height: 100%; }
+  .detail-comment button {
+    color: #fff;
+    background-color: #FDA403;
+    font-weight: 500; }
+  .detail-comment button:hover {
+    color: #fff;
+    background-color: #ffb41d; }
 
 .err h1 {
   padding-top: 20vh;

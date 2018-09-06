@@ -7,16 +7,9 @@ body {
   // font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-// .container-body {
-//   // margin-top: 5px;
-//   background-image: url('http://rpgknights.com/wp-content/uploads/2015/02/Free-Stuff-Creative-Commons.jpg');
-//   background-size: cover;
-//   z-index: -1;
-// }
-
-// .overlay {
-//   background-color: rgba(255, 255, 255, 0.8);
-// }
+.h2-title {
+  font-family: 'Bangers', cursive;
+}
 
   // Img User
 .image-cropper {
@@ -379,6 +372,32 @@ a:hover {
 
 
 
+// Edit Profile
+.edit-prof form {
+  margin-top: 55px;
+
+  & button {
+    padding: 10px 0;
+    margin-top: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FDA403;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.5s ease;
+  }
+}
+
+.edit-prof button:hover {
+  color: #fff;
+  background-color: rgb(255, 180, 29);
+}
+// END Edit Profile
+
+
+
+
+
 // Detail
 .cont-detail {
   width: 100%;
@@ -398,6 +417,8 @@ a:hover {
 
   & h5 {
     margin-bottom: 1.2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid lightgray;
   }
 }
 
@@ -409,6 +430,7 @@ a:hover {
     margin-left: 2rem;
     font-family: 'Bangers', cursive;
     font-size: 2rem;
+    color: rgb(97, 97, 97);
   }
 }
 
@@ -420,18 +442,33 @@ a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 3rem;
   & img {
     height: 3rem;
+   }
+
+  & p {
+    line-height: 0.8rem;
   }
 }
 
 .loc {
+  width: 90%;
   padding-right: 4rem;
 }
 
 .detail-comment {
   height: 100%;
-  color: red;
+  & button {
+    color: #fff;
+    background-color: #FDA403;
+    font-weight: 500;
+  }
+
+  & button:hover {
+    color: #fff;
+    background-color: rgb(255, 180, 29);
+  }
 }
 
 

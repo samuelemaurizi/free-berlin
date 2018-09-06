@@ -11,8 +11,8 @@
         <p> {{this.longdescr}} </p>
         <div class="detail-fav-loc">
           <div class="loc">
-            <p> {{this.location}} </p>
-            <p> {{this.date}} </p>
+            <p><strong>Where: </strong> {{this.location}} </p>
+            <p><strong>When: </strong> {{this.date}} </p>
           </div>
           <a id="favorize-link" href="/{{this._id}}/favorize">
             <img src="{{this.hearticon}} ">
@@ -30,7 +30,7 @@
       <div class="comment">
         <form action="/{{this._id}}/comment" method="post">
           <textarea class="form-control form-add" name="comment" cols="30" rows="15" placeholder="Place your comment here"></textarea>
-          <button class="btn btn-primary btn-block">Submit</button>
+          <button class="btn btn-warning btn-block">Submit</button>
         </form>
       </div>
     </div>
