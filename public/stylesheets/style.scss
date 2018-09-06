@@ -406,7 +406,7 @@ a:hover {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 75px;
+  margin-top: 130px;
 }
 
 .detail {
@@ -498,6 +498,11 @@ a:hover {
   & a:hover {
     color: rgb(197, 129, 2);
   }
+}
+
+.submit-error {
+  color: red;
+  height: 1.3rem;
 }
 // END Edit Profile
 
