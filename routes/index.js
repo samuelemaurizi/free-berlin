@@ -3,6 +3,7 @@ const router = express.Router();
 const Resource = require('../models/Resource');
 const User = require('../models/User');
 const Favorite = require('../models/Favorite');
+const Comment = require('../models/Comment');
 
 
 /*GET home page */
@@ -118,15 +119,30 @@ router.post("/add", (req, res, next) => {
 router.get('/:id/detail', (req, res, next) => {
   Resource.findById(req.params.id)
     .then(resourcesFromDb => {
-      res.render('detail', {
-        category: resourcesFromDb.category,
-        shortdescr: resourcesFromDb.shortdescr,
-        longdescr: resourcesFromDb.longdescr,
-        location: resourcesFromDb.location,
-        date: resourcesFromDb.date,
-        image: resourcesFromDb.image,
-        _id: req.params.id
-      });
+      Favorite.findOne({ _resource: req.params.id, _owner: req.user._id })
+        .then(favedRes => {
+          if (!favedRes) {
+            var heartIcon = "/images/unlike.png"
+          }
+          else {
+            var heartIcon = "/images/like.png"
+          }
+          Comment.find({ _resource: req.params.id })
+            .populate('_author')
+            .then(comments => {
+              res.render('detail', {
+                category: resourcesFromDb.category,
+                shortdescr: resourcesFromDb.shortdescr,
+                longdescr: resourcesFromDb.longdescr,
+                location: resourcesFromDb.location,
+                date: resourcesFromDb.date,
+                image: resourcesFromDb.image,
+                _id: req.params.id,
+                hearticon: heartIcon,
+                comments: comments
+              })
+            });
+        })
     })
     .catch(next)
 })
@@ -189,50 +205,57 @@ router.get('/:id/favorize', (req, res, next) => {
     _owner: UserId,
     _resource: ResourceId
   })
-  Favorite.find({ _owner: req.user._id, _resource: req.params.id })
-    .then(favorited => {
-      if (favorited.length > 0) {
-        ///dont save in favs
-        console.log("LLLLLLLhas already been faved")
-        console.log(favorited, "XXXXXXXXXXXXXfavorited")
-        Favorite.deleteOne({ _owner: req.user._id, _resource: req.params.id })
-          .then(removedFav => {
-            Resource.findById(req.params.id)
-              .then(resourcesFromDb => {
-                res.render('detail', {
-                  category: resourcesFromDb.category,
-                  shortdescr: resourcesFromDb.shortdescr,
-                  longdescr: resourcesFromDb.longdescr,
-                  location: resourcesFromDb.location,
-                  date: resourcesFromDb.date,
-                  image: resourcesFromDb.image,
-                  _id: req.params.id,
-                  color: "background-color:grey"
-                });
+  Comment.find({ _resource: req.params.id })
+    .populate('_author')
+    .then(comments => {
+      Favorite.find({ _owner: req.user._id, _resource: req.params.id })
+        .then(favorited => {
+          if (favorited.length > 0) {
+            ///dont save in favs
+            console.log("LLLLLLLhas already been faved")
+            console.log(favorited, "XXXXXXXXXXXXXfavorited")
+            Favorite.deleteOne({ _owner: req.user._id, _resource: req.params.id })
+              .then(removedFav => {
+                Resource.findById(req.params.id)
+                  .then(resourcesFromDb => {
+                    res.render('detail', {
+                      category: resourcesFromDb.category,
+                      shortdescr: resourcesFromDb.shortdescr,
+                      longdescr: resourcesFromDb.longdescr,
+                      location: resourcesFromDb.location,
+                      date: resourcesFromDb.date,
+                      image: resourcesFromDb.image,
+                      _id: req.params.id,
+                      color: "background-color:grey",
+                      hearticon: "/images/unlike.png",
+                      comments: comments
+                    });
+                  })
               })
-          })
-      }
-      else {
-        newFavorite.save()
-          .then((fav) => {
-            console.log("XXXXXXThe fav was saved!!!", fav);
-            Resource.findById(req.params.id)
-              .then(resourcesFromDb => {
-                res.render('detail', {
-                  category: resourcesFromDb.category,
-                  shortdescr: resourcesFromDb.shortdescr,
-                  longdescr: resourcesFromDb.longdescr,
-                  location: resourcesFromDb.location,
-                  date: resourcesFromDb.date,
-                  image: resourcesFromDb.image,
-                  _id: req.params.id,
-                  color: "color:red"
-                });
+          }
+          else {
+            newFavorite.save()
+              .then((fav) => {
+                console.log("XXXXXXThe fav was saved!!!", fav);
+                Resource.findById(req.params.id)
+                  .then(resourcesFromDb => {
+                    res.render('detail', {
+                      category: resourcesFromDb.category,
+                      shortdescr: resourcesFromDb.shortdescr,
+                      longdescr: resourcesFromDb.longdescr,
+                      location: resourcesFromDb.location,
+                      date: resourcesFromDb.date,
+                      image: resourcesFromDb.image,
+                      _id: req.params.id,
+                      color: "color:red",
+                      hearticon: "/images/like.png",
+                      comments: comments
+                    });
+                  })
               })
-          })
-      }
+          }
+        })
     })
-
     .catch(next)
 });
 
@@ -256,6 +279,56 @@ router.post('/favorites/:resourceId/delete', (req, res, next) => {
     })
     .catch(next)
 });
+
+router.post('/filter', (req, res, next) => {
+  const category = req.body.category;
+  Resource.find({ category: category })
+    .then(matchingResources => {
+      res.render("free-list", {
+        resources: matchingResources
+      });
+    })
+    .catch(next);
+});
+
+router.post('/:id/comment', (req, res, next) => {
+  Resource.findById(req.params.id)
+    .then(resourcesFromDb => {
+      Favorite.findOne({ _resource: req.params.id, _owner: req.user._id })
+        .then(favedRes => {
+          if (!favedRes) {
+            var heartIcon = "/images/unlike.png"
+          }
+          else {
+            var heartIcon = "/images/like.png"
+          }
+          const newComment = new Comment({
+            text: req.body.comment,
+            _author: req.user._id,
+            _resource: req.params.id
+          })
+          newComment.save()
+            .then(comment => {
+              Comment.find({ _resource: req.params.id })
+                .populate('_author')
+                .then(comments => {
+                  res.render('detail', {
+                    category: resourcesFromDb.category,
+                    shortdescr: resourcesFromDb.shortdescr,
+                    longdescr: resourcesFromDb.longdescr,
+                    location: resourcesFromDb.location,
+                    date: resourcesFromDb.date,
+                    image: resourcesFromDb.image,
+                    _id: req.params.id,
+                    hearticon: heartIcon,
+                    comments: comments
+                  });
+                })
+            })
+        });
+    })
+    .catch(next);
+})
 
 // router.get("/favorite/:resourceID/create", (req, res) => {
 //   console.log("CREATING A FAVORITE!!!!!!!")

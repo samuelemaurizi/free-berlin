@@ -140,8 +140,9 @@ a:hover {
   text-align: center; }
 
 .main-bg h1 {
+  margin: 0;
   font-family: 'Bangers', cursive;
-  margin: 0; }
+  color: #616161; }
 
 .main-btn-bg {
   width: 45%;
@@ -220,10 +221,17 @@ a:hover {
   width: 60%;
   height: 100%;
   padding-left: 10%; }
+  .user-info h4 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem; }
 
 .user-info a {
   color: #acacac;
   margin-right: 0; }
+
+.user-info a:hover {
+  color: #fff;
+  background: #FDA403; }
 
 .user-fav-contrib {
   display: flex;
@@ -231,7 +239,8 @@ a:hover {
   justify-content: space-between;
   margin-top: 36px; }
   .user-fav-contrib ul {
-    list-style: none; }
+    list-style: none;
+    padding-left: 0; }
 
 .user-btn {
   display: flex;
@@ -255,6 +264,48 @@ a:hover {
   .contrib a {
     display: block;
     margin-right: 8px; }
+
+.cont-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 75px; }
+
+.detail {
+  width: 60%;
+  padding-right: 4rem; }
+  .detail img {
+    margin-bottom: 1rem; }
+  .detail h5 {
+    margin-bottom: 1.2rem; }
+
+.detail-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  .detail-title h3 {
+    margin-left: 2rem;
+    font-family: 'Bangers', cursive;
+    font-size: 2rem; }
+
+.detail-comment {
+  width: 30%; }
+
+.detail-fav-loc {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  .detail-fav-loc img {
+    height: 3rem; }
+
+.loc {
+  padding-right: 4rem; }
+
+.detail-comment {
+  height: 100%;
+  color: red; }
 
 .err h1 {
   padding-top: 20vh;
