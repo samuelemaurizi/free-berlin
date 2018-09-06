@@ -18,7 +18,11 @@ router.get('/main', (req, res, next) => {
 
 /*GET list of free resources*/
 router.get("/free-list", (req, res, next) => {
-  Resource.find()
+  let filter = {}
+  if (req.query.category) {
+    filter.category = req.query.category
+  }
+  Resource.find(filter)
     .then(resourcesFromDb => {
       res.render("free-list", {
         resources: resourcesFromDb
@@ -28,59 +32,34 @@ router.get("/free-list", (req, res, next) => {
 });
 
 router.get('/profile', (req, res, next) => {
-  User.findById(req.user._id)
-    .then(userFromDb => {
-      //console.log(userFromDb)
-      //userFromDb.populate(_contributions)
-      //console.log(userFromDb._contributions)
-      Resource.find({ _owner: req.user._id })
-        .then(resourcesFromOwner => {
-          var resourcesFromOwner = resourcesFromOwner
-          // var counterLikes;
-          // resourcesFromOwner.forEach(function (resource) {   //lacking then here?
-          //   counterLikes += Favorite.find({ _resource: resource._id }).length
-          //   console.log("FAVORITEFIND____", Favorite.find({ _resource: resource._id }))
-          // })
-          let promises = [];
-          for (var i = 0; i < resourcesFromOwner.length; i++) {
-            promises.push(Favorite.count({ _resource: resourcesFromOwner[i]._id }))
-          }
-          Promise.all(promises)
-            .then(counterLikes => {
-              if (counterLikes.length > 0) {
-                var counterLikes = counterLikes.reduce(function (total, amount) {
-                  return total + amount;
-                })
-              }
-              else {
-                var counterLikes = 0;
-              }
-              //console.log(counterLikes, "counterLikes")
-              //console.log("resourcesfrmownerfirst", resourcesFromOwner)
-              Favorite.find({ _owner: req.user._id })
-                .populate('_resource')
-                .then(faved => {
-                  //console.log("faved1", faved)
-                  //console.log("faved", faved)
-                  res.render('profile', {
-                    username: userFromDb.username,
-                    password: userFromDb.password,
-                    favorized: counterLikes,  //userFromDb.favorized,
-                    description: userFromDb.description,
-                    contributions: userFromDb._contributions,
-                    profilepic: userFromDb.profilepic,
-                    createdAt: userFromDb.created_at,
-                    contributions: resourcesFromOwner,
-                    favorites: faved
-                  })
-                })
+  Resource.find({ _owner: req.user._id })
+    .then(resourcesFromOwner => {
+      let promises = [];
+      for (var i = 0; i < resourcesFromOwner.length; i++) {
+        promises.push(Favorite.count({ _resource: resourcesFromOwner[i]._id }))
+      }
+      Promise.all(promises)
+        .then(favoritesCounts => {
+          var counterLikes = favoritesCounts.reduce((total, amount) => total + amount, 0)
+
+          Favorite.find({ _owner: req.user._id })
+            .populate('_resource')
+            .then(faved => {
+              res.render('profile', {
+                username: req.user.username,
+                password: req.user.password,
+                favorized: counterLikes,
+                description: req.user.description,
+                contributions: req.user._contributions,
+                profilepic: req.user.profilepic,
+                createdAt: req.user.created_at,
+                contributions: resourcesFromOwner,
+                favorites: faved
+              })
             })
+        })
 
-
-
-        });
-      //console.log("contrbutions", userFromDb.contributions)
-    })
+    });
 })
 
 router.get("/add", (req, res, next) => {
@@ -101,13 +80,6 @@ router.post("/add", (req, res, next) => {
   })
   newResource.save()
     .then((resource) => {
-      // User.findById(req.user._id)
-      //   .then(userFromDb => {
-      //     //userFromDb.populate('_contributions')
-      //     //userFromDb._contributions.push(resource._id)
-      //     User.update({ _id: req.user._id }, { $push: { _contributions: resource._id } });
-      //     console.log("contributions", userFromDb._contributions)
-      //   })
       console.log("The res was saved!!!");
       res.redirect('/free-list');
     })
@@ -119,7 +91,7 @@ router.post("/add", (req, res, next) => {
 router.get('/:id/detail', (req, res, next) => {
   Resource.findById(req.params.id)
     .then(resourcesFromDb => {
-      Favorite.findOne({ _resource: req.params.id, _owner: req.user._id })
+      Favorite.findOne({ _resource: req.params.id, _owner: req.user && req.user._id })
         .then(favedRes => {
           if (!favedRes) {
             var heartIcon = "/images/unlike.png"
@@ -139,14 +111,16 @@ router.get('/:id/detail', (req, res, next) => {
                 image: resourcesFromDb.image,
                 _id: req.params.id,
                 hearticon: heartIcon,
-                comments: comments
+                comments: comments.map(comment => {
+                  comment.readableDate = comment.created_at.toDateString();
+                  return comment;
+                })
               })
             });
         })
     })
     .catch(next)
 })
-
 
 router.get('/:id/edit', (req, res, next) => {
   let resourceId = req.params.id;
@@ -190,75 +164,37 @@ router.post('/editProfile', (req, res, next) => {
     .catch(next)
 });
 
-// router.post('/:id/favorize', (req, res, next) => {
-//   ////
-//   //res.redirect('/:id/detail')
-// });
-
 router.get('/:id/favorize', (req, res, next) => {
   ////
   //res.redirect('/:id/detail')
   console.log("XXXXXXXXI am here");
-  ResourceId = req.params.id;
+  let resourceId = req.params.id;
   UserId = req.user._id;
   const newFavorite = new Favorite({
     _owner: UserId,
-    _resource: ResourceId
+    _resource: resourceId
   })
-  Comment.find({ _resource: req.params.id })
-    .populate('_author')
-    .then(comments => {
-      Favorite.find({ _owner: req.user._id, _resource: req.params.id })
-        .then(favorited => {
-          if (favorited.length > 0) {
-            ///dont save in favs
-            console.log("LLLLLLLhas already been faved")
-            console.log(favorited, "XXXXXXXXXXXXXfavorited")
-            Favorite.deleteOne({ _owner: req.user._id, _resource: req.params.id })
-              .then(removedFav => {
-                Resource.findById(req.params.id)
-                  .then(resourcesFromDb => {
-                    res.render('detail', {
-                      category: resourcesFromDb.category,
-                      shortdescr: resourcesFromDb.shortdescr,
-                      longdescr: resourcesFromDb.longdescr,
-                      location: resourcesFromDb.location,
-                      date: resourcesFromDb.date,
-                      image: resourcesFromDb.image,
-                      _id: req.params.id,
-                      color: "background-color:grey",
-                      hearticon: "/images/unlike.png",
-                      comments: comments
-                    });
-                  })
-              })
-          }
-          else {
-            newFavorite.save()
-              .then((fav) => {
-                console.log("XXXXXXThe fav was saved!!!", fav);
-                Resource.findById(req.params.id)
-                  .then(resourcesFromDb => {
-                    res.render('detail', {
-                      category: resourcesFromDb.category,
-                      shortdescr: resourcesFromDb.shortdescr,
-                      longdescr: resourcesFromDb.longdescr,
-                      location: resourcesFromDb.location,
-                      date: resourcesFromDb.date,
-                      image: resourcesFromDb.image,
-                      _id: req.params.id,
-                      color: "color:red",
-                      hearticon: "/images/like.png",
-                      comments: comments
-                    });
-                  })
-              })
-          }
-        })
+  Favorite.find({ _owner: req.user._id, _resource: req.params.id })
+    .then(favorited => {
+      if (favorited.length > 0) {
+        ///dont save in favs
+        console.log("LLLLLLLhas already been faved")
+        console.log(favorited, "XXXXXXXXXXXXXfavorited")
+        Favorite.deleteOne({ _owner: req.user._id, _resource: req.params.id })
+          .then(removedFav => {
+            res.redirect(`/${resourceId}/detail`)
+          })
+      }
+      else {
+        newFavorite.save()
+          .then((fav) => {
+            console.log("XXXXXXThe fav was saved!!!", fav);
+            res.redirect(`/${resourceId}/detail`)
+          })
+      }
     })
     .catch(next)
 });
-
 
 router.post('/:id/delete', (req, res, next) => {
   Resource.findByIdAndRemove(req.params.id)
@@ -280,17 +216,6 @@ router.post('/favorites/:resourceId/delete', (req, res, next) => {
     .catch(next)
 });
 
-router.post('/filter', (req, res, next) => {
-  const category = req.body.category;
-  Resource.find({ category: category })
-    .then(matchingResources => {
-      res.render("free-list", {
-        resources: matchingResources
-      });
-    })
-    .catch(next);
-});
-
 router.post('/:id/comment', (req, res, next) => {
   Resource.findById(req.params.id)
     .then(resourcesFromDb => {
@@ -309,30 +234,11 @@ router.post('/:id/comment', (req, res, next) => {
           })
           newComment.save()
             .then(comment => {
-              Comment.find({ _resource: req.params.id })
-                .populate('_author')
-                .then(comments => {
-                  res.render('detail', {
-                    category: resourcesFromDb.category,
-                    shortdescr: resourcesFromDb.shortdescr,
-                    longdescr: resourcesFromDb.longdescr,
-                    location: resourcesFromDb.location,
-                    date: resourcesFromDb.date,
-                    image: resourcesFromDb.image,
-                    _id: req.params.id,
-                    hearticon: heartIcon,
-                    comments: comments
-                  });
-                })
+              res.redirect(`/${req.params.id}/detail`)
             })
         });
     })
     .catch(next);
 })
-
-// router.get("/favorite/:resourceID/create", (req, res) => {
-//   console.log("CREATING A FAVORITE!!!!!!!")
-//   res.send("HEY!!!!! CREATING A FAVORITE!!!!!!!")
-// })
 
 module.exports = router;

@@ -17,13 +17,14 @@
   <nav class="navbar navbar-expand-md ">
     <a class="link-home d-lg-inline-block" href="/">FREE BERLIN</a>
     <div class="link navbar-nav ml-auto flex-nowrap">
-      {{!--
-      <a href="/">Home</a> --}}
-      <a href="/auth/login">Login</a>
-      <a href="/auth/signup">Signup</a>
-      <a href="/auth/logout">Logout</a>
+      {{#if isConnected}}
       <a href="/profile">Profile</a>
       <a href="/add">Contribute</a>
+      <a href="/auth/logout">Logout</a>
+      {{else}}
+      <a href="/auth/login">Login</a>
+      <a href="/auth/signup">Signup</a>
+      {{/if}}
       <a href="/free-list">Free Resources</a>
     </div>
   </nav>

@@ -6,21 +6,28 @@
     <p> {{this.longdescr}} </p>
     <p> {{this.location}} </p>
     <p> {{this.date}} </p>
+    {{#if isConnected}}
     <a id="favorize-link" href="favorize ">
       <img src="{{this.hearticon}} ">
     </a>
+    {{/if}}
   </div>
 </form>
 
 <form action="/{{this._id}}/comment" method="post">
+  {{#if isConnected}}
   <textarea class="form-control form-add" name="comment" cols="30" rows="8" placeholder="Place your comment here"></textarea>
   <button>Submit</button>
+  {{else}}
+  <p>You must
+    <a href="/auth/login">login</a> to post comments</p>
+  {{/if}}
 </form>
 
 {{#each comments}}
 <div>
   <p>{{this.text}}</p>
-  <footer>Author: {{this._author.username}} Date: {{this.created_at}}</footer>
+  <footer>Author: {{this._author.username}} Date: {{this.readableDate}}</footer>
 </div>
 {{/each}} {{!-- jdjdjjd --}}
 
