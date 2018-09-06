@@ -362,7 +362,9 @@ a:hover {
 
 .submit-error {
   color: red;
-  height: 1.3rem; }
+  height: 1.3rem;
+  margin-top: 1rem;
+  text-align: center; }
 
 .list-filter {
   display: flex;
