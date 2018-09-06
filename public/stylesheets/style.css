@@ -12,7 +12,8 @@ body {
   overflow: hidden;
   width: 200px;
   height: 200px;
-  border-radius: 50%; }
+  border-radius: 50%;
+  background-size: cover; }
 
 .profile-pic {
   display: inline;
