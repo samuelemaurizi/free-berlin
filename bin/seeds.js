@@ -1,12 +1,15 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Resource = require("../models/Resource");
 const User = require("../models/User");
 
-mongoose
-  .connect(
-    "mongodb://localhost/freeberlin",
-    { useNewUrlParser: true }
-  )
+
+// mongoose
+//   .connect(
+//     "mongodb://localhost/freeberlin",
+//     { useNewUrlParser: true }
+//   )
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to Mongo!");
   })

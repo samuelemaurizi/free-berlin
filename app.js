@@ -14,8 +14,9 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 
 
-mongoose
-  .connect('mongodb://localhost/freeberlin', { useNewUrlParser: true })
+// mongoose
+//   .connect('mongodb://localhost/freeberlin', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI)
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
