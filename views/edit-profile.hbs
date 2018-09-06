@@ -10,5 +10,8 @@
       <br>
       <button class="btn btn-warning btn-block">Submit</button>
     </form>
+    {{#if error}}
+    <p>ERROR: {{error}}</p>
+    {{/if}}
   </div>
 </div>

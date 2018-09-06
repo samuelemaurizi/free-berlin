@@ -84,7 +84,7 @@ router.post("/add", (req, res, next) => {
       res.redirect('/free-list');
     })
     .catch((error) => {
-      res.render('add-resource')//vorher /
+      res.render('add-resource', { error: 'You must fill all obligatory fields' })//vorher /
     })
 })
 
@@ -114,7 +114,8 @@ router.get('/:id/detail', (req, res, next) => {
                 comments: comments.map(comment => {
                   comment.readableDate = comment.created_at.toDateString();
                   return comment;
-                })
+                }),
+                error: req.flash("error")
               })
             });
         })
@@ -141,7 +142,9 @@ router.post('/:id/edit', (req, res, next) => {
     .then((resource) => {
       res.redirect('/profile')
     })
-    .catch(next)
+    .catch((error) => {
+      res.render('edit-resource', { error: 'Fields are not supposed to be blank' })//vorher /
+    })
 });
 
 router.get('/editProfile', (req, res, next) => {
@@ -161,7 +164,11 @@ router.post('/editProfile', (req, res, next) => {
     .then((user) => {
       res.redirect('/profile')
     })
-    .catch(next)
+    .catch((error) => {
+      console.log("CATCH!!!!!!!!!!!!!");
+
+      res.render('edit-profile', { error: 'Fields are not supposed to be blank' })//vorher /
+    })
 });
 
 router.get('/:id/favorize', (req, res, next) => {
@@ -217,28 +224,22 @@ router.post('/favorites/:resourceId/delete', (req, res, next) => {
 });
 
 router.post('/:id/comment', (req, res, next) => {
-  Resource.findById(req.params.id)
-    .then(resourcesFromDb => {
-      Favorite.findOne({ _resource: req.params.id, _owner: req.user._id })
-        .then(favedRes => {
-          if (!favedRes) {
-            var heartIcon = "/images/unlike.png"
-          }
-          else {
-            var heartIcon = "/images/like.png"
-          }
-          const newComment = new Comment({
-            text: req.body.comment,
-            _author: req.user._id,
-            _resource: req.params.id
-          })
-          newComment.save()
-            .then(comment => {
-              res.redirect(`/${req.params.id}/detail`)
-            })
-        });
+  const newComment = new Comment({
+    text: req.body.comment,
+    _author: req.user._id,
+    _resource: req.params.id
+  })
+  newComment.save()
+    .then(comment => {
+      res.redirect(`/${req.params.id}/detail`)
     })
-    .catch(next);
+    .catch((error) => {
+      console.log("req.flash!!!!");
+
+      req.flash("error", "Please write something in the comment field")
+      res.redirect(`/${req.params.id}/detail`)
+      // res.render('detail', { error: 'Please write something in the comment field' })//vorher /
+    })
 })
 
 module.exports = router;

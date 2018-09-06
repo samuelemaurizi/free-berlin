@@ -35,15 +35,25 @@
       </div>
     </div>
     <div class="detail-comment">
+      {{#each comments}}
+      <div>
+        <p>{{this.text}}</p>
+        <footer>Author: {{this._author.username}} Date: {{this.readableDate}}</footer>
+      </div>
+      {{/each}}
+      <p style="color:red">
+        {{error}}
+      </p>
       <div class="comment">
         <form action="/{{this._id}}/comment" method="post">
           {{#if isConnected}}
           <textarea class="form-control form-add" name="comment" cols="30" rows="15" placeholder="Place your comment here"></textarea>
           <button class="btn btn-warning btn-block">Submit</button>
-          {{else}}
-          <p>
-            You must<a href="/auth/login"> login </a>to post comments
-          </p>
+          {{else}} {{#if error}}
+          <p>ERROR: {{error}}</p>
+          {{/if}}
+          <p>You must
+            <a href="/auth/login">login</a> to post comments</p>
           {{/if}}
         </form>
       </div>

@@ -6,10 +6,10 @@ const resourceSchema = new Schema({
     type: String,
     enum: ['Event', 'Culture', 'Sports', 'Food']
   },
-  shortdescr: String,
-  longdescr: String,
+  shortdescr: { type: String, required: true },
+  longdescr: { type: String, required: true },
   location: String,
-  date: { type: String, default: "-" },
+  date: String,
   image: {
     type: String,
     default: '../public/images/free-icon.png'

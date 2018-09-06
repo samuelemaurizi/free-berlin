@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, required: true, unique: true, trim: true, minlength: 1 },
   password: String,
   favorized: { type: Number, default: 0 },
   profilepic: { type: String, default: "/images/profile-picture.png" },
