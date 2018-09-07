@@ -63,7 +63,7 @@ a:hover {
   border-color: #ffb41d; }
 
 .index-btn {
-  margin-top: 4rem;
+  margin-top: 3rem;
   background-color: #FDA403;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
   transition: background-color 0.5s ease; }
@@ -72,15 +72,33 @@ a:hover {
     height: 100%; }
 
 .index-txt h1 {
-  padding: 30px 0;
+  padding: 30px 0 0 0;
+  margin: 100px 0 0 0;
   font-family: 'Bangers', cursive;
   font-size: 5rem;
+  color: #616161; }
+
+.index-txt h6 {
+  margin: 0;
+  padding-bottom: 30px;
+  font-size: 1.2rem;
+  font-family: 'Bangers', cursive;
+  color: #616161; }
+
+.index-txt p {
+  margin-bottom: 8px;
   color: #616161; }
 
 .txt-index {
   font-size: 1rem;
   padding: 30px 0;
   color: #616161; }
+
+.index-txt-footer {
+  margin-bottom: 2rem;
+  font-weight: 600; }
+  .index-txt-footer p {
+    margin: 3px; }
 
 .container h2 {
   padding: 25px 0;

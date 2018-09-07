@@ -99,7 +99,7 @@ a:hover {
 }
 
 .index-btn {
-  margin-top: 4rem;  
+  margin-top: 3rem;  
   background-color: #FDA403;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
   transition: background-color 0.5s ease;
@@ -110,17 +110,41 @@ a:hover {
   }
 }
 
-.index-txt h1 {
-  padding : 30px 0;
-  font-family: 'Bangers', cursive;
-  font-size: 5rem;
-  color: rgb(97, 97, 97);
+.index-txt {
+  & h1 {
+    padding : 30px 0 0 0;
+    margin: 100px 0 0 0;
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+    color: rgb(97, 97, 97);
+  }
+
+  & h6 {
+    margin: 0;
+    padding-bottom: 30px;
+    font-size: 1.2rem;
+    font-family: 'Bangers', cursive;
+    color: rgb(97, 97, 97);
+  }
+
+  & p {
+    margin-bottom: 8px;
+    color: rgb(97, 97, 97);
+  }
 }
 
 .txt-index {
   font-size: 1rem;
   padding: 30px 0;
   color: rgb(97, 97, 97);
+}
+
+.index-txt-footer {
+  margin-bottom: 2rem;
+  font-weight: 600;
+  & p {
+    margin: 3px;
+  }
 }
 // END Index
 

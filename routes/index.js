@@ -52,7 +52,7 @@ router.get('/profile', (req, res, next) => {
                 description: req.user.description,
                 contributions: req.user._contributions,
                 profilepic: req.user.profilepic,
-                createdAt: req.user.created_at,
+                createdAt: req.user.created_at.toDateString(),
                 contributions: resourcesFromOwner,
                 favorites: faved
               })
