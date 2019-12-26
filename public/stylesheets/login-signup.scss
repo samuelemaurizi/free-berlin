@@ -1,0 +1,109 @@
+// Signup and Login
+.container__form {
+  min-height: calc(100vh - 75px);
+  width: 50%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+}
+
+.form__title {
+  font-size: 2.5rem;
+  font-family: var(--font-logo);
+  margin-bottom: 2rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+
+  label {
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  input {
+    padding: 0.75rem;
+  }
+}
+
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__btn {
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--primary-color-dark);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--text-color-light);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.account-msg {
+  font-size: 0.9rem;
+  color: var(--text-color);
+
+  a {
+    margin-left: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #fda403;
+  }
+}
+
+.err-msg {
+  height: 30px;
+  margin: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: red;
+}
+
+@media only screen and (max-width: 950px) {
+  .container__form {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .form__footer {
+    flex-direction: column;
+
+    p {
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container__form {
+    width: 90%;
+    padding: 3rem 0.25rem;
+  }
+}

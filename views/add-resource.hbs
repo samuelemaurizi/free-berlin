@@ -1,22 +1,23 @@
-<div class="container container-shadow container-add w-50">
+<div class="container__resouce">
+  <h2>Add Resouce</h2>
   <form action="/add" method="post">
-    <select class="custom-select form-add" id="selec-menu" name="category">
+    <select id="selec-menu" name="category">
       <option value="hide">Select Category</option>
       <option value="Event">Event</option>
       <option value="Culture">Culture</option>
       <option value="Sports">Sports</option>
       <option value="Food">Food</option>
     </select>
-    <div class="form-group">
-      <input class="form-control form-add" name='shortdescr' type='text' placeholder="Title">
-      <textarea class="form-control form-add" name="longdescr" cols="30" rows="6" placeholder="Detailed description"></textarea>
-      <input class="form-control form-add" name='location' type='text' placeholder="Where?">
-      <input class="form-control form-add" name='date' type='text' placeholder="When?">
-      <input class="form-control form-add" name='image' type='text' placeholder="Image link (optional)">
+    <div class="form__group">
+      <input name='shortdescr' type='text' placeholder="Title">
+      <textarea name="longdescr" cols="30" rows="6" placeholder="Description"></textarea>
+      <input name='location' type='text' placeholder="Where?">
+      <input name='date' type='text' placeholder="When?">
+      <input name='image' type='text' placeholder="Image link (optional)">
     </div>
-    <button class="btn-block">Submit</button>
+    <button class="btn">Submit</button>
   </form>
   {{#if error}}
-  <p style="color:red">ERROR: {{error}}</p>
+  <p class="error-msg" style="color:red">ERROR: {{error}}</p>
   {{/if}}
 </div>

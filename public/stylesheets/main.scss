@@ -1,0 +1,43 @@
+.container__main {
+  width: 60%;
+  margin: 0 auto;
+  min-height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 3rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-family: 'Bangers', cursive;
+  }
+
+  a {
+    font-size: 2rem;
+    padding: 1.25rem 2.5rem;
+    margin: 1rem 0;
+    font-family: 'Bangers', cursive;
+    text-align: center;
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease-in-out;
+  }
+
+  a:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container__main {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container__main {
+    padding: 2rem 0;
+  }
+}

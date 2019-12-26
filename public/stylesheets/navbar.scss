@@ -1,0 +1,124 @@
+.navbar {
+  width: 100%;
+  background-color: var(--primary-color);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.navbar__links {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.btn-home {
+  font-size: 2.4rem;
+  font-family: var(--font-logo);
+  margin-left: 2rem;
+  // transition: color 0.9s ease;
+}
+
+.links__container {
+  display: flex;
+  list-style: none;
+
+  li {
+    padding: 0.75rem;
+
+    a {
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: color 0.4s ease;
+    }
+
+    a:hover {
+      color: var(--primary-color-dark);
+    }
+  }
+}
+
+//////////////////////
+//    NAVBAR MOBILE
+.navbar__mobile {
+  display: none;
+
+  .navbar__mobile-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+
+    a {
+      color: var(--text-color-light);
+      font-size: 2.4rem;
+      font-family: var(--font-logo);
+      letter-spacing: 1px;
+    }
+
+    .mobile__menu {
+      button {
+        padding: 0.5rem;
+        border: none;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-color-light);
+        background: none;
+      }
+    }
+  }
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  background-color: #24252a;
+  overflow: hidden;
+  transition: all 0.5s ease 0s;
+}
+
+.overlay__content {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay a {
+  padding: 15px;
+  font-size: 2rem;
+  display: block;
+  transition: all 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #0088a9;
+}
+
+.overlay .close__nav {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 2rem;
+}
+
+//////////////////////
+//    MEDIA
+@media only screen and (max-width: 700px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__mobile {
+    display: inherit;
+  }
+}

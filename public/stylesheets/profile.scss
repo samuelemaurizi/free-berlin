@@ -1,0 +1,158 @@
+.container__profile {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user__profile {
+  display: flex;
+  padding: 6rem 1.5rem 1.5rem;
+  align-items: flex-end;
+  border-bottom: 1px solid lightgray;
+
+  img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+
+  .user__info {
+    margin-left: 3rem;
+
+    h2 {
+      font-family: var(--font-logo);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 0.3rem;
+    }
+
+    :nth-child(4) {
+      margin-bottom: 2rem;
+    }
+
+    a {
+      padding: 0.5rem 0.75rem;
+      background-color: var(--primary-color);
+      transition: all 0.5s ease-in-out;
+    }
+
+    a:hover {
+      font-weight: 700;
+      color: var(--text-color);
+      background-color: var(--text-color-light);
+    }
+  }
+}
+
+.user__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 1.5rem;
+
+  h4 {
+    text-align: center;
+    padding: 0.25rem;
+    color: var(--text-color-light);
+    background-color: var(--primary-color);
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      padding-left: 0.75rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .user__content-contribution {
+    width: 50%;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .user__content-favorites {
+    width: 50%;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .btns__container {
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid lightgray;
+
+    button {
+      box-shadow: none;
+    }
+
+    a,
+    button {
+      padding: 0.25rem 0.5rem;
+      margin-right: 0.5rem;
+      border: none;
+      width: 50%;
+      text-align: center;
+      font-size: 1rem;
+      background-color: var(--primary-color);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-danger {
+      background-color: orangered;
+    }
+
+    a:hover,
+    button:hover {
+      font-weight: 700;
+      color: var(--text-color);
+      background-color: var(--text-color-light);
+    }
+  }
+}
+
+//////////////////////
+//    MEDIA
+@media only screen and (max-width: 700px) {
+  .container__profile {
+    width: 90%;
+  }
+
+  .user__profile {
+    padding: 3rem 1rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .user__profile {
+    flex-direction: column;
+    align-items: center;
+
+    .user__info {
+      margin-top: 1.5rem;
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+
+  .user__content {
+    padding: 3rem 0;
+    flex-direction: column;
+
+    .user__content-contribution,
+    .user__content-favorites {
+      width: 100%;
+
+      h4 {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}

@@ -1,14 +1,20 @@
-<div class="container container-shadow w-50">
-  <div class="edit-prof">
-    <h2 class="h2-title">Edit Profile</h2>
+<div class="container__edit-profile">
+  <div class="edit-profile">
+    <h2>Edit Profile</h2>
     <form action="/editProfile" method="post">
-      <input class="form-control" name='username' type='text' placeholder="Name" value="{{this.username}}">
-      <br>
-      <input class="form-control" name="description" type="text" placeholder="Describe yourself in a few words" value="{{this.description}}">
-      <br>
-      <input class="form-control " name='profilepic' type='text' placeholder="Image link (optional) " value="{{this.profilepic}}">
-      <br>
-      <button class="btn btn-warning btn-block">Submit</button>
+      <div class="form__input">
+        <label for="name">Name:</label>
+        <input name='username' type='text' placeholder="Name" value="{{this.username}}">
+      </div>
+      <div class="form__input">
+        <label for="description">Description:</label>
+        <input name="description" type="text" placeholder="Describe yourself in a few words" value="{{this.description}}">
+      </div>
+      <div class="form__input">
+        <label for="pic">Photo:</label>
+        <input name='profilepic' type='text' placeholder="Image link (optional) " value="{{this.profilepic}}">
+      </div>
+      <button class="btn">Submit</button>
     </form>
     {{#if error}}
     <p>ERROR: {{error}}</p>

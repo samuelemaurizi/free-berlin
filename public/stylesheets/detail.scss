@@ -1,0 +1,132 @@
+.container__detail {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 3rem 0;
+  padding: 2.5rem;
+}
+
+.detail__body {
+  width: 60%;
+  padding-right: 3rem;
+}
+
+.detail__category {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+
+  h3 {
+    margin-left: 2rem;
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--text-color-secondary);
+  }
+}
+
+.detail__description h3 {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.detail__info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 1.75rem;
+  border-bottom: 1px solid lightgray;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  img {
+    height: 1.5rem;
+  }
+}
+
+.comments {
+  margin-top: 3rem;
+
+  h4 {
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    font-family: 'Bangers', coursive;
+    color: var(--text-color-secondary);
+  }
+
+  h5 {
+    margin-bottom: 0.5rem;
+  }
+
+  .comment__author {
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid lightgray;
+  }
+}
+
+.comment-form__container {
+  width: 40%;
+  padding: 5.5rem 0;
+  text-align: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    textarea {
+      padding: 0.5rem;
+      resize: vertical;
+      width: 90%;
+      font-family: var(--font-main);
+      margin-bottom: 0.75rem;
+    }
+
+    button {
+      padding: 0.5rem 0.75rem;
+      border: none;
+      cursor: pointer;
+      background-color: var(--primary-color);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    a {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+  }
+}
+
+.submit-error {
+  color: red;
+  height: 1.3rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 700px) {
+  .container__detail {
+    margin: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+
+    .detail__body {
+      width: 80%;
+      padding: 0;
+    }
+
+    .comment-form__container {
+      width: 80%;
+      padding: 2.5rem 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container__detail {
+    padding: 0;
+  }
+}

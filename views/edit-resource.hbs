@@ -1,19 +1,20 @@
-<div class="container container-shadow container-add w-50">
+<div class="container__resouce">
+  <h2>Edit Resource</h2>
   <form action="/{{this._id}}/edit" method="post">
-    <select class="custom-select form-add" id="selec-menu" name="category">
+    <select id="selec-menu" name="category">
       <option value="hide">Select Category</option>
       <option value="Event">Event</option>
       <option value="Culture">Culture</option>
       <option value="Sports">Sports</option>
       <option value="Food">Food</option>
     </select>
-    <div class="form-group">
-      <input class="form-control form-add" name='shortdescr' type='text' placeholder="Title" value="{{this.shortdescr}}">
-      <textarea class="form-control form-add" name="longdescr" cols="30" rows="8" placeholder="Detailed description">{{this.longdescr}}</textarea>
-      <input class="form-control form-add" name='location' type='text' placeholder="Where? " value="{{this.location}} ">
-      <input class="form-control form-add" name='date' type='text' placeholder="When? " value="{{this.date}} ">
-      <input class="form-control form-add" name='image' type='text' placeholder="Image link (optional) " value="{{this.image}} ">
+    <div class="form__group">
+      <input name='shortdescr' type='text' placeholder="Title" value="{{this.shortdescr}}">
+      <textarea name="longdescr" cols="30" rows="8" placeholder="Detailed description">{{this.longdescr}}</textarea>
+      <input name='location' type='text' placeholder="Where? " value="{{this.location}} ">
+      <input name='date' type='text' placeholder="When? " value="{{this.date}} ">
+      <input name='image' type='text' placeholder="Image link (optional) " value="{{this.image}} ">
     </div>
-    <button class="btn-block">Submit</button>
+    <button class="btn">Submit</button>
   </form>
 </div>

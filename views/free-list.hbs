@@ -1,25 +1,25 @@
-<div class="container">
-  <div class="list-filter">
+<div class="container__list">
+  <div class="list__nav">
     <h1>Free Stuff</h1>
-    <form class="form-filter" action="/free-list" method="get">
-      <div class="form-flex">
-        <select class="form-control" name="category">
+    <form class="form__container" action="/free-list" method="get">
+      <div class="form__menu">
+        <select name="category">
           <option value="Event">Event</option>
           <option value="Culture">Culture</option>
           <option value="Sports">Sports</option>
           <option value="Food">Food</option>
         </select>
-        <button><a>Filter</a></button>
-        <button>
+        <button class="btn"><a>Filter</a></button>
+        <button class="btn">
           <a href="/free-list">See all</a>
         </button>
       </div>
     </form>
   </div>
-  <div class="cards-container">
+  <div class="cards__container">
     {{#each resources}}
       <div class="card">
-        <div class="card-img">
+        <div class="card__img">
           <img src="/images/free-icon.png" style="height:50px" alt="default img">
         </div>
         <h3> {{this.category}} </h3>
@@ -27,7 +27,7 @@
         <p><strong>Where: </strong> {{this.location}} </p>
         <p><strong>When: </strong> {{this.date}} </p>
         <div class="btn-details">
-          <a class="btn btn-warning btn-block" href="{{this._id}}/detail"> Details</a>
+          <a class="btn" href="{{this._id}}/detail"> Details</a>
         </div>
       </div>
     {{/each}}

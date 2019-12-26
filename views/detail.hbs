@@ -1,62 +1,59 @@
-<div class="container">
-  <div class="cont-detail">
-
-    <div class="detail">
-      <div class="detail-title">
-        <img src="/images/free-icon.png" style="height:50px" alt="default img">
-        <h3> {{this.category}} </h3>
-      </div>
-      <div>
-        <h5> {{this.shortdescr}} </h5>
-        <p> {{this.longdescr}} </p>
-        <div class="detail-fav-loc">
-          <div class="loc">
-            <p>
-              <strong>Where: </strong> {{this.location}} </p>
-            <p>
-              <strong>When: </strong> {{this.date}} </p>
-          </div>
-          {{#if isConnected}}
-          <a id="favorize-link" href="/{{this._id}}/favorize">
-            <img src="{{this.hearticon}} ">
-          </a>
-          {{/if}}
+<div class="container__detail">
+  <div class="detail__body">
+    <div class="detail__category">
+      <img src="/images/free-icon.png" style="height:50px" alt="default img">
+      <h3> {{this.category}} </h3>
+    </div>
+    <div class="detail__description">
+      <h3> {{this.shortdescr}} </h3>
+      <p> {{this.longdescr}} </p>
+      <div class="detail__info">
+        <div>
+          <p>
+            <strong>Where: </strong> {{this.location}}
+          </p>
+          <p>
+            <strong>When: </strong> {{this.date}} 
+          </p>
         </div>
-
-        <h4 class="comment-header">Comments</h4>
-        {{#each comments}}
-        <div class="comment-auth">
-          <p><strong>Author: </strong>{{this._author.username}} <strong>Date: </strong> {{this.readableDate}}</p>
-          {{!-- <h6></h6> --}}
-          <p class="auth-text">{{this.text}}</p>
-        </div>
-        {{/each}}
-
+        {{#if isConnected}}
+        <a id="favorize-link" href="/{{this._id}}/favorize">
+          <img src="{{this.hearticon}} ">
+        </a>
+        {{/if}}
       </div>
     </div>
-    <div class="detail-comment">
-      <div class="comment">
-        <form action="/{{this._id}}/comment" method="post">
-          {{#if isConnected}}
-          <textarea class="form-control form-add" name="comment" cols="30" rows="15" placeholder="Place your comment here"></textarea>
-          <button class="btn btn-warning btn-block">Submit</button>
-          {{else}}
-
-          <div class="submit-error">
-            {{#if error}}
-              <p>ERROR: {{error}}</p>
-            {{/if}} 
-          </div>
-
-          <p>
-            You must<a href="/auth/login"> login </a>to post comments
-          </p>
-          {{/if}}
-        </form>
-        <div class="submit-error">
-          <p>{{error}}</p>
-        </div>
+    <div class="comments">
+      <h4>Comments</h4>
+      {{#each comments}}
+      <div class="comment__author">
+        <p><strong>Author: </strong>{{this._author.username}}</p>
+        <h5>Date: {{this.readableDate}}</h5>
+        <p class="comment__text">{{this.text}}</p>
       </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="comment-form__container">
+    <form action="/{{this._id}}/comment" method="post">
+      {{#if isConnected}}
+      <textarea class="form__textarea" name="comment" cols="35" rows="20" placeholder="Place your comment here"></textarea>
+      <button class="btn">Submit</button>
+      {{else}}
+
+      <div class="submit-error">
+        {{#if error}}
+          <p>ERROR: {{error}}</p>
+        {{/if}} 
+      </div>
+
+      <p>
+        You must<a href="/auth/login"> login </a>to post comments
+      </p>
+      {{/if}}
+    </form>
+    <div class="submit-error">
+      <p>{{error}}</p>
     </div>
   </div>
 </div>
